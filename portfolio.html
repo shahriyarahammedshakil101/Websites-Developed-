@@ -1,1 +1,371 @@
-এখানে আপনার HTML বসাবেন✅
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Shahriyar Ahammed Shakil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --accent: #38bdf8;
+            --verified: #1d9bf0;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #0ea5e9, #818cf8);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-color: #f1f5f9;
+                --card-bg: #ffffff;
+                --text-main: #0f172a;
+                --text-dim: #64748b;
+                --accent: #0284c7;
+                --border: rgba(0, 0, 0, 0.05);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 24px;
+            padding: 30px 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .profile-container {
+            position: relative;
+            width: 148px;
+            height: 148px;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ring {
+            position: absolute;
+            width: 148px;
+            height: 148px;
+            border-radius: 50%;
+            background: conic-gradient(#0ea5e9, #22d3ee, #818cf8, #c084fc, #0ea5e9);
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-img {
+            width: 132px;
+            height: 132px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            border: 4px solid var(--card-bg);
+            background-color: var(--card-bg);
+        }
+
+        .name-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .name {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .verified-badge {
+            color: var(--verified);
+            font-size: 1.1rem;
+            display: flex;
+            position: relative;
+        }
+
+        .bio-section {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 0.95rem;
+            min-height: 80px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            background-color: var(--accent);
+            margin-left: 2px;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .info-card {
+            background: rgba(125, 125, 125, 0.05);
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .info-value {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .contact-trigger {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: var(--gradient);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .contact-trigger:active {
+            transform: scale(0.98);
+        }
+
+        .contact-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+            opacity: 0;
+            margin-top: 0;
+        }
+
+        .contact-content.active {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 20px;
+        }
+
+        .grid-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .link-btn {
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: transform 0.2s;
+        }
+
+        .link-btn:active { transform: scale(0.95); }
+
+        .fb { background: #1877F2; grid-column: span 2; }
+        .msg { background: #0084FF; }
+        .wa { background: #25D366; }
+        .tg { background: #0088cc; }
+        .yt { background: #FF0000; }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+        }
+
+        .social-footer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-footer a {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+
+        .social-footer a:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <div class="profile-container">
+                <div class="ring"></div>
+                <img src="https://i.ibb.co/7J7VKfQk/1752770692267-1.jpg" alt="Shahriyar Ahammed Shakil" class="profile-img">
+            </div>
+
+            <div class="name-wrapper">
+                <h1 class="name">শাহরিয়ার আহাম্মেদ শাকিল</h1>
+                <span class="verified-badge">
+                    <span class="fa-stack fa-1x">
+                        <i class="fas fa-certificate fa-stack-2x"></i>
+                        <i class="fas fa-check fa-stack-1x fa-inverse" style="font-size: 0.5em;"></i>
+                    </span>
+                </span>
+            </div>
+
+            <div class="bio-section" id="bio-text"></div>
+
+            <div class="info-card">
+                <div class="info-row">
+                    <span class="info-label">Age</span>
+                    <span class="info-value">20</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Gender</span>
+                    <span class="info-value">male</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Religion</span>
+                    <span class="info-value">Islam</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Country</span>
+                    <span class="info-value">Bangladesh</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Address</span>
+                    <span class="info-value">Rongpur Gaibandha</span>
+                </div>
+            </div>
+
+            <button class="contact-trigger" id="toggle-btn">
+                Contact Me <i class="fas fa-chevron-down" id="arrow-icon"></i>
+            </button>
+
+            <div class="contact-content" id="contact-section">
+                <div class="grid-links">
+                    <a href="https://www.facebook.com/share/17hfC3eZD8/" class="link-btn fb"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="https://m.me/ShahriyarAhammedShakil" class="link-btn msg"><i class="fab fa-facebook-messenger"></i> Messenger</a>
+                    <a href="https://wa.me/8801932575522" class="link-btn wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="https://t.me/@Shahriyarahammedshakil101" class="link-btn tg"><i class="fab fa-telegram"></i> Telegram</a>
+                    <a href="https://youtube.com/@srgamer07" class="link-btn yt"><i class="fab fa-youtube"></i> YouTube</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p class="footer-text">© 2026 Shahriyar Ahammed Shakil. All rights reserved.</p>
+            <div class="social-footer">
+                <a href="https://www.facebook.com/share/17hfC3eZD8/"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/8801932575522"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://t.me/@Shahriyarahammedshakil101"><i class="fab fa-telegram"></i></a>
+                <a href="https://youtube.com/@srgamer07"><i class="fab fa-youtube"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const bioText = "BIO ইয়া আল্লাহ অতিরিক্ত কোন কিছু চাই না,\n\nযতটুকু হলে জীবনটা সুন্দর হয়,\n\nআমাকে ততোটুকু দান করুন। আমিন 🤲";
+        const bioElement = document.getElementById('bio-text');
+        let index = 0;
+
+        function typeWriter() {
+            if (index < bioText.length) {
+                if (bioText.charAt(index) === "\n") {
+                    bioElement.innerHTML += "<br>";
+                } else {
+                    bioElement.innerHTML += bioText.charAt(index);
+                }
+                index++;
+                setTimeout(typeWriter, 60);
+            } else {
+                bioElement.innerHTML += '<span class="cursor">|</span>';
+            }
+        }
+
+        const toggleBtn = document.getElementById('toggle-btn');
+        const contactSection = document.getElementById('contact-section');
+        const arrowIcon = document.getElementById('arrow-icon');
+
+        toggleBtn.addEventListener('click', () => {
+            const isActive = contactSection.classList.toggle('active');
+            arrowIcon.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0deg)';
+            arrowIcon.classList.toggle('fa-chevron-down', !isActive);
+            arrowIcon.classList.toggle('fa-chevron-up', isActive);
+        });
+
+        window.onload = typeWriter;
+    </script>
+</body>
+  </html>
